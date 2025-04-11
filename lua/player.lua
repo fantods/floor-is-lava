@@ -21,14 +21,12 @@ function Player.new(x, y)
 end
 
 function Player:update(dt, platforms, gravity)
-    -- Handle eye movement
     if love.keyboard.isDown('w') or love.keyboard.isDown('up') then
         self.eyeDirection = -1
     elseif love.keyboard.isDown('s') or love.keyboard.isDown('down') then
         self.eyeDirection = 1
     end
 
-    -- Handle horizontal movement
     if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
         self.x = self.x - self.speed * dt
         self.facingRight = false
@@ -39,11 +37,9 @@ function Player:update(dt, platforms, gravity)
         self.facingRight = true
     end
 
-    -- Apply gravity
     self.velocityY = self.velocityY + gravity * dt
     self.y = self.y + self.velocityY * dt
 
-    -- Check for collisions with platforms
     for _, platform in ipairs(platforms) do
         if self:checkCollision(platform) then
             -- If player is falling (velocityY > 0)
@@ -55,7 +51,6 @@ function Player:update(dt, platforms, gravity)
         end
     end
 
-    -- Keep player in bounds
     if self.x < 0 then self.x = 0 end
     if self.x > Constants.SCREEN_WIDTH - self.width then
         self.x = Constants.SCREEN_WIDTH - self.width

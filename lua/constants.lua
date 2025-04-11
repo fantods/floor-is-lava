@@ -1,11 +1,9 @@
 local M = {}
 
--- Game constants
 M.GRAVITY = 800
 M.SCREEN_WIDTH = 800
 M.SCREEN_HEIGHT = 600
 
--- Player configuration
 M.PLAYER = {
     INITIAL_X = 100,
     INITIAL_Y = 100,
@@ -20,7 +18,6 @@ M.PLAYER = {
     INITIAL_EYE_DIRECTION = 0,
 }
 
--- Platform configuration
 M.PLATFORMS = {
     GROUND = {
         x = 0,
@@ -36,7 +33,6 @@ M.PLATFORMS = {
     }
 }
 
--- Color configuration
 M.COLORS = {
     BACKGROUND = { 0.1, 0.1, 0.15 },
     PLATFORM = { 0.3, 0.6, 0.3 },
@@ -49,7 +45,6 @@ M.COLORS = {
     PLAYER_LEGS = { 0.6, 0.1, 0.1 }
 }
 
--- Helper function to get all platforms including ground
 function M.get_all_platforms()
     local all_platforms = { M.PLATFORMS.GROUND }
     for _, platform in ipairs(M.PLATFORMS.FLOATING) do

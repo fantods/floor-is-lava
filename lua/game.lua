@@ -17,13 +17,11 @@ function Game.new()
 end
 
 function Game:initialize()
-    -- Create player
     self.player = Player.new(
         Constants.PLAYER.INITIAL_X,
         Constants.PLAYER.INITIAL_Y
     )
 
-    -- Create platforms
     table.insert(self.platforms, Platform.new(
         Constants.PLATFORMS.GROUND.x,
         Constants.PLATFORMS.GROUND.y,
@@ -42,23 +40,16 @@ function Game:initialize()
 end
 
 function Game:update(dt)
-    -- Update score
     self.score = self.score + dt
-
-    -- Update player
     self.player:update(dt, self.platforms, self.gravity)
 end
 
 function Game:draw()
-    -- Draw platforms
     for _, platform in ipairs(self.platforms) do
         platform:draw(Constants.COLORS)
     end
 
-    -- Draw player
     self.player:draw(Constants.COLORS)
-
-    -- Draw score
     love.graphics.setColor(1, 1, 1)
     local font = love.graphics.newFont(14)
     love.graphics.setFont(font)
